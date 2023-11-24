@@ -25,7 +25,7 @@ using Players = vector<Player>;
 
 class Tactic {
 public:
-  int por;
+  int por = -1;
   vector<int> def;
   vector<int> mig;
   vector<int> dav;
@@ -40,10 +40,14 @@ public:
 
 // Constants 
 int N1, N2, N3, T, J;
-Players players;
+Players porters;
+Players defenses;
+Players migcampistes;
+Players davanters;
+
 int MAX_POINTS = 0;
 
-string print_players(const string label, const vector<int>& ids){
+string print_players(const string label, const vector<int>& ids, Players& players){
   stringstream phrase;
   phrase << label << ": ";
   bool first = true;
@@ -67,10 +71,10 @@ void write(Tactic& t, const char *output){
   if (file.is_open()){
 
     // output << fixed << setprecision(1) << duration.count() << endl;
-    file << "POR: " << players[t.por].name << endl;
-    file << print_players("DEF", t.def) << endl;
-    file << print_players("MIG", t.mig) << endl;
-    file << print_players("DAV", t.dav) << endl;
+    file << "POR: " << porters[t.por].name << endl;
+    file << print_players("DEF", t.def, defenses) << endl;
+    file << print_players("MIG", t.mig, migcampistes) << endl;
+    file << print_players("DAV", t.dav, davanters) << endl;
     file << "Punts: " << t.points << endl;
     file << "Preu: " << t.price << endl;
     file.close();
@@ -82,21 +86,47 @@ void write(Tactic& t, const char *output){
 
 }
 
-void exh(Tactic& t, const char *output, int idx){
+void exh(Tactic& t, const char *output, int idx, bool fullPor, bool fullDef, bool fullMig, bool fullDav){
 
+  if(fullPor){
+    cout << t.por << endl;
+  }
 
-  if (t.def.size() == N1 and t.mig.size() == N2 and t.dav.size() == N3 and t.points > MAX_POINTS)
+  if (t.price > T)
+  {
+    return;
+  }
+  
+
+  if (fullDav and fullDef and fullMig and t.points > MAX_POINTS)
   {
     write(t, output);
   }
 
+  if(!fullPor){
+    for(Player p: porters){
+      if (p.price <= J)
+      {
+        t.por = p.id;
+        t.price += p.price;
+        t.points += p.points;
+        exh(t, output, idx, true, false, false, false);
+      }
+    }
+  }
+
+  else if (!fullDef)
+  {
+    if(t.def.size() == N1){
+      exh(t, output, 0, true, true, false, false);
+    }
+  }
   
 
 
 
 
 
-  
 
 }
 
@@ -126,7 +156,23 @@ int main(int argc, char const *argv[])
           string aux2;
           getline(db,aux2);
           // The player id is the index in the players vector.
-          players.push_back(Player(id, nom, posicio, preu, club, punts));
+
+          if(posicio == "por"){
+            porters.push_back(Player(id, nom, posicio, preu, club, punts));
+          }
+          else if (posicio == "def")
+          {
+            defenses.push_back(Player(id, nom, posicio, preu, club, punts));
+          }
+          else if (posicio == "dav")
+          {
+            davanters.push_back(Player(id, nom, posicio, preu, club, punts));
+          }
+          else if (posicio == "mig")
+          {
+            migcampistes.push_back(Player(id, nom, posicio, preu, club, punts));
+          }
+          
           ++id;
       }
       db.close();
@@ -147,29 +193,29 @@ int main(int argc, char const *argv[])
       exit(1);
     }
 
-    vector<int> def;
-    vector<int> mig;
-    vector<int> dav;
+    // vector<int> def;
+    // vector<int> mig;
+    // vector<int> dav;
 
-    def.push_back(65);
-    def.push_back(66);
-    def.push_back(67);
+    // def.push_back(65);
+    // def.push_back(66);
+    // def.push_back(67);
 
-    mig.push_back(65);
-    mig.push_back(66);
-    mig.push_back(67);
+    // mig.push_back(65);
+    // mig.push_back(66);
+    // mig.push_back(67);
 
-    dav.push_back(65);
-    dav.push_back(66);
-    dav.push_back(67);
+    // dav.push_back(65);
+    // dav.push_back(66);
+    // dav.push_back(67);
 
-    Tactic tactic = Tactic(64, def, mig, dav, 7, 4);
+    // Tactic tactic = Tactic(64, def, mig, dav, 7, 4);
 
     // Executes exhaustive search
     // auto start = high_resolution_clock::now();
     // Tactic tactic;
-    // Tactic tactic = Tactic();
-    exh(tactic, argv[3]);
+    Tactic tactic = Tactic();
+    exh(tactic, argv[3], 0, false, false, false, false);
     // auto end = high_resolution_clock::now();
     // duration<double> duration = end - start;
 
