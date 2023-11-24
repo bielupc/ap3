@@ -41,11 +41,7 @@ public:
 // Constants 
 int N1, N2, N3, T, J;
 Players players;
-
-void exh(Tactic& tactic){
-
-
-}
+int MAX_POINTS = 0;
 
 string print_players(const string label, const vector<int>& ids){
   stringstream phrase;
@@ -64,6 +60,45 @@ string print_players(const string label, const vector<int>& ids){
   return phrase.str();
 }
 
+
+
+void write(Tactic& t, const char *output){
+  ofstream file(output);
+  if (file.is_open()){
+
+    // output << fixed << setprecision(1) << duration.count() << endl;
+    file << "POR: " << players[t.por].name << endl;
+    file << print_players("DEF", t.def) << endl;
+    file << print_players("MIG", t.mig) << endl;
+    file << print_players("DAV", t.dav) << endl;
+    file << "Punts: " << t.points << endl;
+    file << "Preu: " << t.price << endl;
+    file.close();
+  }
+  else{
+    cout << "Unable to open file";
+    exit(1);
+  }
+
+}
+
+void exh(Tactic& t, const char *output, int idx){
+
+
+  if (t.def.size() == N1 and t.mig.size() == N2 and t.dav.size() == N3 and t.points > MAX_POINTS)
+  {
+    write(t, output);
+  }
+
+  
+
+
+
+
+
+  
+
+}
 
 int main(int argc, char const *argv[])
 {
@@ -112,49 +147,35 @@ int main(int argc, char const *argv[])
       exit(1);
     }
 
+    vector<int> def;
+    vector<int> mig;
+    vector<int> dav;
+
+    def.push_back(65);
+    def.push_back(66);
+    def.push_back(67);
+
+    mig.push_back(65);
+    mig.push_back(66);
+    mig.push_back(67);
+
+    dav.push_back(65);
+    dav.push_back(66);
+    dav.push_back(67);
+
+    Tactic tactic = Tactic(64, def, mig, dav, 7, 4);
+
     // Executes exhaustive search
-    auto start = high_resolution_clock::now();
+    // auto start = high_resolution_clock::now();
     // Tactic tactic;
-    Tactic tactic = Tactic();
-    exh(tactic);
-    auto end = high_resolution_clock::now();
-    duration<double> duration = end - start;
-
-    // vector<int> def;
-    // vector<int> mig;
-    // vector<int> dav;
-
-    // def.push_back(65);
-    // def.push_back(66);
-    // def.push_back(67);
-
-    // mig.push_back(65);
-    // mig.push_back(66);
-    // mig.push_back(67);
-
-    // dav.push_back(65);
-    // dav.push_back(66);
-    // dav.push_back(67);
-
-    // tactic = Tactic(64, def, mig, dav, 7, 4);
+    // Tactic tactic = Tactic();
+    exh(tactic, argv[3]);
+    // auto end = high_resolution_clock::now();
+    // duration<double> duration = end - start;
 
 
     // Writes output
-    ofstream output(argv[3]);
-    if (output.is_open()){
-      output << fixed << setprecision(1) << duration.count() << endl;
-      output << "POR: " << players[tactic.por].name << endl;
-      output << print_players("DEF", tactic.def) << endl;
-      output << print_players("MIG", tactic.mig) << endl;
-      output << print_players("DAV", tactic.dav) << endl;
-      output << "Punts: " << tactic.points << endl;
-      output << "Preu: " << tactic.price << endl;
-      output.close();
-    }
-    else{
-      cout << "Unable to open file";
-      exit(1);
-    }
+
 
     return 0;
 }

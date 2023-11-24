@@ -1,4 +1,3 @@
-2.0
 POR: Navas
 DEF: Diakhaby;Gabriel Paulista;Gayá
 MIG: Diakhaby;Gabriel Paulista;Gayá
