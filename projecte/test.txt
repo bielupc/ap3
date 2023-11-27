@@ -1,6 +1,0 @@
-POR: Navas
-DEF: Diakhaby;Gabriel Paulista;Gayá
-MIG: Diakhaby;Gabriel Paulista;Gayá
-DAV: Diakhaby;Gabriel Paulista;Gayá
-Punts: 7
-Preu: 4
