@@ -1,6 +1,7 @@
-POR: Navas
-DEF: Diakhaby;Gabriel Paulista;Gayá
-MIG: Diakhaby;Gabriel Paulista;Gayá
-DAV: Diakhaby;Gabriel Paulista;Gayá
-Punts: 7
-Preu: 4
+2.3
+POR: Jaume Domenech
+DEF: Zaldua;Martín;Carlos Domínguez
+MIG: Brian Ocampo;Youba Diarra;Fake_mig1;Fake_mig2
+DAV: Joao Félix;Fake_dav1;Fake_dav2
+Punts: 183
+Preu: 7970000
