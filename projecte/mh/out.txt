@@ -1,0 +1,8 @@
+0.3
+POR: Marchesín
+DEF: Fake_def1;Fake_def4;Fake_def5
+MIG: Brian Ocampo;Brian Ocampo;Fake_mig5;Fake_mig4
+DAV: Joao Félix;Fake_dav1;Fake_dav4
+Punts: 345
+Preu: 5564000
+

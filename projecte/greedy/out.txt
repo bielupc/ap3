@@ -1,0 +1,8 @@
+0.0
+POR: Marchesín
+DEF: Álex Balde;Militão;De Marcos
+MIG: Brian Ocampo;Sancet;Almeida;Dani Rodríguez
+DAV: Joao Félix;Aspas;Borja Iglesias
+Punts: 1720
+Preu: 57782000
+
