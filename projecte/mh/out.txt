@@ -1,8 +1,8 @@
-0.3
-POR: Marchesín
-DEF: Fake_def1;Fake_def4;Fake_def5
-MIG: Brian Ocampo;Brian Ocampo;Fake_mig5;Fake_mig4
-DAV: Joao Félix;Fake_dav1;Fake_dav4
-Punts: 345
-Preu: 5564000
+5.9
+POR: Oblak
+DEF: Rüdiger;Álex Balde;Álex Balde
+MIG: Sancet;Aleix García;De Jong;Sancet
+DAV: Isi;Samuel Lino;Enes Ünal
+Punts: 2072
+Preu: 114000000
 

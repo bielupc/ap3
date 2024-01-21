@@ -1,8 +1,8 @@
 0.0
 POR: Marchesín
-DEF: Álex Balde;Militão;De Marcos
-MIG: Brian Ocampo;Sancet;Almeida;Dani Rodríguez
-DAV: Joao Félix;Aspas;Borja Iglesias
-Punts: 1720
-Preu: 57782000
+DEF: Fake_def5;Fake_def1;Fake_def2
+MIG: Brian Ocampo;Fake_mig1;Fake_mig2;Fake_mig3
+DAV: Joao Félix;Fake_dav5;Fake_dav4
+Punts: 257
+Preu: 3782000
 

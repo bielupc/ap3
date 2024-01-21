@@ -97,7 +97,6 @@ void exh(Tactic& t, int i, char const *output){
       file << t << endl;
       file.close();
     }
-    cout << "A";
     return;
   }
 
